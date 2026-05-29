@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weazel News - Chefredakteur Bewerbung</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Barlow+Condensed:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+
+:root{
+  --bg:#f5f0e8;
+  --bg1:#ede8df;
+  --bg2:#e4ddd2;
+  --bg3:#d9d1c4;
+  --ink:#1d1d1c;
+  --ink2:#2a2720;
+  --ink3:#4a4740;
+  --ink4:#8a8780;
+  --gold:#c8960a;
+  --gold2:#e0a800;
+  --gold3:#f5c842;
+  --gold-glow:rgba(200,150,10,0.08);
+  --gold-border:rgba(200,150,10,0.3);
+  --red:#b91c1c;
+  --red2:#dc2626;
+  --mono:'DM Mono',monospace;
+  --display:'Bebas Neue',sans-serif;
+  --serif:'Playfair Display',serif;
+  --cond:'Barlow Condensed',sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--mono);
+  overflow-x:hidden;
+  cursor:default;
+}
+
+/* Paper grain overlay */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.5;
+  pointer-events:none;
+  z-index:9999;
+}
+
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* ── TICKER ── */
+.ticker-wrap{
+  position:fixed;top:0;left:0;right:0;
+  z-index:1100;
+  height:28px;
+  background:var(--red2);
+  display:flex;align-items:center;
+  overflow:hidden;
+  border-bottom:2px solid #7f1d1d;
+}
+.ticker-label{
+  background:#7f1d1d;
+  color:#fff;
+  font-family:var(--cond);
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  padding:0 1rem;
+  height:100%;
+  display:flex;align-items:center;
+  white-space:nowrap;
+  flex-shrink:0;
+  gap:.5rem;
+}
+.ticker-dot{width:6px;height:6px;border-radius:50%;background:#ff6b6b;animation:blink 1s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.ticker-track{
+  display:flex;
+  animation:scroll 40s linear infinite;
+  white-space:nowrap;
+}
+.ticker-track:hover{animation-play-state:paused}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-item{
+  font-family:var(--cond);
+  font-size:.72rem;
+  font-weight:400;
+  letter-spacing:.08em;
+  color:#fef2f2;
+  padding:0 2.5rem;
+}
+.ticker-item strong{color:#fca5a5;font-weight:700}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:28px;left:0;right:0;
+  z-index:900;
+  background:var(--ink);
+  border-bottom:3px solid var(--gold);
+}
+.nav-top{
+  display:flex;justify-content:space-between;align-items:center;
+  height:56px;
+  padding:0 2rem;
+}
+.nav-brand{
+  display:flex;align-items:center;gap:14px;
+  font-family:var(--display);
+  font-size:1.8rem;
+  letter-spacing:.12em;
+  color:var(--gold2);
+}
+.nav-brand-icon{
+  width:32px;height:32px;
+  background:var(--gold2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);
+  font-size:1.1rem;
+  color:var(--ink);
+  font-weight:900;
+}
+.nav-sub{
+  font-family:var(--mono);
+  font-size:.52rem;
+  letter-spacing:.3em;
+  color:var(--ink4);
+  text-transform:uppercase;
+  border-left:1px solid rgba(255,255,255,.1);
+  padding-left:14px;
+  margin-left:4px;
+}
+.nav-links{
+  display:flex;align-items:stretch;
+  list-style:none;
+}
+.nav-links a{
+  display:flex;align-items:center;
+  height:56px;
+  padding:0 1rem;
+  font-family:var(--cond);
+  font-size:.75rem;
+  font-weight:600;
+  letter-spacing:.2em;
+  color:rgba(255,255,255,.45);
+  text-decoration:none;
+  text-transform:uppercase;
+  border-left:1px solid rgba(255,255,255,.07);
+  transition:color .15s,background .15s;
+}
+.nav-links a:hover{color:var(--gold2);background:rgba(200,150,10,.07)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 340px;
+  padding-top:84px; /* ticker + nav */
+  position:relative;
+  overflow:hidden;
+  background:var(--bg);
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.03) 0, rgba(0,0,0,.03) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.03) 0, rgba(0,0,0,.03) 1px, transparent 1px, transparent 80px);
+  pointer-events:none;
+}
+.hero-left{
+  padding:4rem 3.5rem 4rem 4.5rem;
+  display:flex;flex-direction:column;justify-content:center;
+  border-right:1px solid var(--bg3);
+  position:relative;
+}
+.hero-bg-text{
+  position:absolute;
+  right:-20px;top:50%;
+  transform:translateY(-50%);
+  font-family:var(--display);
+  font-size:20rem;
+  color:rgba(0,0,0,.025);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+  letter-spacing:-.02em;
+}
+.tag-row{
+  display:flex;align-items:center;gap:.8rem;
+  margin-bottom:2.5rem;
+}
+.tag{
+  font-family:var(--cond);
+  font-size:.65rem;
+  font-weight:700;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  padding:.3rem .8rem;
+  border:1.5px solid var(--gold-border);
+  color:var(--gold);
+  background:rgba(200,150,10,.05);
+}
+.tag.red{
+  border-color:rgba(185,28,28,.4);
+  color:var(--red);
+  background:rgba(185,28,28,.05);
+}
+.tag-line{flex:1;height:1px;background:var(--bg3)}
+
+.hero-overline{
+  font-family:var(--cond);
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.4em;
+  color:var(--ink4);
+  text-transform:uppercase;
+  margin-bottom:.8rem;
+}
+.hero-edition{
+  font-family:var(--mono);
+  font-size:.58rem;
+  letter-spacing:.2em;
+  color:var(--gold);
+  margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.hero-edition::before{content:'//'}
+
+.hero-title{
+  font-family:var(--display);
+  font-size:clamp(4rem,9vw,8.5rem);
+  line-height:.88;
+  letter-spacing:.05em;
+  color:var(--ink);
+  margin-bottom:.4rem;
+}
+.hero-title .accent{color:var(--gold)}
+.hero-title .accent2{color:var(--red)}
+
+.hero-deck{
+  font-family:var(--serif);
+  font-size:1.15rem;
+  font-style:italic;
+  color:var(--ink3);
+  margin-bottom:3rem;
+  padding-left:2px;
+  border-left:3px solid var(--gold);
+  padding-left:1rem;
+  line-height:1.6;
+}
+
+.hero-byline{
+  display:flex;align-items:baseline;gap:1rem;
+  margin-bottom:.3rem;
+}
+.hero-name{
+  font-family:var(--display);
+  font-size:3.2rem;
+  letter-spacing:.08em;
+  color:var(--ink);
+  line-height:1;
+}
+.hero-name-rule{
+  flex:1;height:2px;
+  background:var(--ink);
+  margin-bottom:.4rem;
+}
+.hero-role{
+  font-family:var(--cond);
+  font-size:.68rem;
+  font-weight:600;
+  letter-spacing:.3em;
+  color:var(--ink4);
+  text-transform:uppercase;
+  margin-bottom:2.5rem;
+}
+
+
+/* ── STAGGERED ORG CHART (VERSETZT) ── */
+.staggered-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 60px; /* Platz für die Linie in der Mitte */
+  position: relative;
+  margin-top: 1rem;
+  width: 100%;
+}
+.staggered-spine {
+  position: absolute;
+  left: 50%;
+  top: -20px; /* Verbindet sich fließend mit der Linie von oben */
+  bottom: 40px; /* Endet auf Höhe des letzten Rangs */
+  width: 1px;
+  background: var(--bg3);
+  transform: translateX(-50%);
+}
+.staggered-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Abstand zwischen den Rängen in derselben Spalte */
+  z-index: 2;
+}
+.staggered-col .org-node {
+  width: 250px; /* Etwas breiter, damit der Text gut passt */
+}
+.staggered-col.right {
+  margin-top: 55px; /* Verschiebt die rechte Seite nach unten */
+}
+
+/* Automatische seitliche Verbindungslinien */
+.staggered-col.left .org-node::after {
+  content: '';
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  width: 30px;
+  height: 1px;
+  background: var(--bg3);
+  z-index: 1;
+}
+.staggered-col.right .org-node::after {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  width: 30px;
+  height: 1px;
+  background: var(--bg3);
+  z-index: 1;
+}
+
+.stat-bar{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border:1.5px solid var(--bg3);
+  overflow:hidden;
+}
+.stat-item{
+  padding:.9rem 1rem;
+  border-right:1px solid var(--bg3);
+  background:var(--bg1);
+  transition:background .2s;
+}
+.stat-item:last-child{border-right:none}
+.stat-item:hover{background:var(--bg2)}
+.stat-lbl{
+  font-family:var(--cond);
+  font-size:.55rem;
+  font-weight:600;
+  letter-spacing:.25em;
+  color:var(--ink4);
+  text-transform:uppercase;
+  display:block;
+  margin-bottom:.35rem;
+}
+.stat-val{
+  font-family:var(--display);
+  font-size:1rem;
+  letter-spacing:.06em;
+  color:var(--gold);
+}
+
+.hero-right{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:1.5rem;
+  padding:2rem;
+  background:var(--ink);
+}
+
+
+
+
+.id-card{
+  width:100%;
+  border:1px solid rgba(255,255,255,.1);
+  background:#1a1815;
+  overflow:hidden;
+}
+.id-card-header{
+  background:var(--gold);
+  padding:.45rem 1rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.id-card-header span{
+  font-family:var(--cond);
+  font-size:.55rem;
+  font-weight:700;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--ink);
+}
+.id-photo {
+  width: 100%;
+  aspect-ratio: 4/5; /* Höheres Format, passend für Charakter-Screenshots */
+  background: #52504e;
+  overflow: hidden;
+  position: relative;
+}
+.id-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 10%; /* Hält den Kopf und Vinewood-Schriftzug im Bild */
+  /* filter: sepia(20%) contrast(1.1); Auskommentieren, falls du die Originalfarben deines Bildes willst */
+}
+.id-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Sorgt für den perfekten, weichen Übergang in den Footer-Hintergrund */
+  background: linear-gradient(to bottom, transparent 65%, #1a1815 100%);
+  pointer-events: none;
+}
+.id-photo-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:.5rem;
+  background:#1a1815;
+}
+.id-photo-placeholder span:first-child{
+  font-family:var(--display);
+  font-size:5rem;
+  color:#333;
+}
+.id-photo-placeholder span:last-child{
+  font-size:.55rem;
+  letter-spacing:.2em;
+  color:#444;
+  text-transform:uppercase;
+}
+.id-footer{
+  padding:.6rem 1rem;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:.4rem;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.id-footer-lbl{font-family:var(--cond);font-size:.48rem;font-weight:600;letter-spacing:.2em;color:rgba(255,255,255,.3);text-transform:uppercase;display:block}
+.id-footer-val{font-size:.8rem;color:var(--gold2);font-weight:600}
+
+.press-badge{
+  width:100%;
+  border:2px solid var(--gold);
+  padding:.8rem 1.2rem;
+  display:flex;align-items:center;gap:1rem;
+  position:relative;
+  overflow:hidden;
+  background:#1a1815;
+}
+.press-badge::before{
+  content:'';
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    45deg,transparent,transparent 6px,
+    rgba(200,150,10,.04) 6px,
+    rgba(200,150,10,.04) 12px
+  );
+}
+.press-icon{
+  font-family:var(--display);
+  font-size:2.5rem;
+  color:var(--gold2);
+  line-height:1;
+  flex-shrink:0;
+}
+.press-text-main{
+  font-family:var(--display);
+  font-size:1.2rem;
+  letter-spacing:.2em;
+  color:var(--gold2);
+  display:block;
+}
+.press-text-sub{
+  font-family:var(--cond);
+  font-size:.52rem;
+  font-weight:600;
+  letter-spacing:.2em;
+  color:rgba(200,150,10,.5);
+  text-transform:uppercase;
+}
+
+/* ── PAGE ── */
+.page{max-width:1100px;margin:0 auto;padding:5rem 3rem}
+.section{margin-bottom:7rem}
+
+/* Divider - newspaper column rule style */
+.sec-hd{
+  display:grid;
+  grid-template-columns:3rem 1fr;
+  gap:0;
+  align-items:stretch;
+  margin-bottom:3.5rem;
+  border-bottom:2px solid var(--ink);
+  padding-bottom:1rem;
+  position:relative;
+}
+.sec-hd::after{
+  content:'';
+  position:absolute;
+  bottom:-5px;left:0;right:0;
+  height:1px;
+  background:var(--bg3);
+}
+.sec-num{
+  font-family:var(--display);
+  font-size:4.5rem;
+  color:rgba(0,0,0,.07);
+  line-height:1;
+  align-self:flex-end;
+  padding-right:1.5rem;
+}
+.sec-info{}
+.sec-pre{
+  font-family:var(--cond);
+  font-size:.62rem;
+  font-weight:700;
+  letter-spacing:.35em;
+  color:var(--gold);
+  text-transform:uppercase;
+  margin-bottom:.3rem;
+}
+.sec-title{
+  font-family:var(--display);
+  font-size:2.8rem;
+  letter-spacing:.04em;
+  color:var(--ink);
+}
+
+/* ── DOSSIER ── */
+.dossier-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:1px;
+  background:var(--bg3);
+  border:1.5px solid var(--bg3);
+  margin-bottom:2rem;
+}
+.d-field{
+  background:var(--bg1);
+  padding:1.1rem 1.3rem;
+  transition:background .2s;
+}
+.d-field:hover{background:var(--bg)}
+.d-lbl{font-family:var(--cond);font-size:.58rem;font-weight:600;letter-spacing:.25em;color:var(--ink4);text-transform:uppercase;display:block;margin-bottom:.3rem}
+.d-val{font-size:1rem;color:var(--ink);font-weight:600}
+
+/* ── TEXT ── */
+.txt p{
+  font-family:var(--serif);
+  font-size:.95rem;
+  line-height:1.95;
+  color:var(--ink2);
+  margin-bottom:1.5rem;
+}
+.txt strong{color:var(--ink);font-weight:700}
+.txt .highlight{
+  background:linear-gradient(to right, rgba(200,150,10,.15), rgba(200,150,10,.05));
+  border-left:3px solid var(--gold);
+  padding:.8rem 1.2rem;
+  margin-bottom:1.5rem;
+  font-style:italic;
+}
+.txt ul{list-style:none;padding:0;margin-bottom:1.5rem}
+.txt li{
+  font-family:var(--mono);
+  font-size:.82rem;
+  line-height:1.8;
+  color:var(--ink2);
+  padding:.35rem 0 .35rem 2rem;
+  position:relative;
+  border-bottom:1px solid var(--bg3);
+}
+.txt li:last-child{border-bottom:none}
+.txt li::before{
+  content:'▶';
+  position:absolute;left:0;
+  color:var(--gold);
+  font-size:.5rem;
+  top:.6rem;
+}
+
+/* ── WERDEGANG ── */
+.wg-entry{
+  display:grid;
+  grid-template-columns:160px 1fr;
+  gap:0;
+  border-bottom:1px solid var(--bg3);
+  transition:background .2s;
+}
+.wg-entry:hover{background:var(--gold-glow)}
+.wg-left{
+  padding:1.5rem 1.5rem 1.5rem 0;
+  border-right:1px solid var(--bg3);
+  display:flex;flex-direction:column;justify-content:flex-start;
+  gap:.5rem;
+}
+.wg-badge{
+  font-family:var(--cond);
+  font-size:.62rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  padding:.25rem .6rem;
+  width:fit-content;
+  text-transform:uppercase;
+}
+.wg-type{font-family:var(--cond);font-size:.58rem;font-weight:600;letter-spacing:.2em;color:var(--ink4);text-transform:uppercase}
+.wg-right{padding:1.5rem 0 1.5rem 1.5rem}
+.wg-role{font-family:var(--cond);font-size:.9rem;font-weight:700;letter-spacing:.05em;color:var(--ink);margin-bottom:.2rem;text-transform:uppercase}
+.wg-under{font-family:var(--serif);font-size:.78rem;color:var(--ink4);font-style:italic}
+
+/* ── RANK GRID ── */
+.rank-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:1px;
+  background:var(--bg3);
+  border:1.5px solid var(--bg3);
+  margin-bottom:4rem;
+}
+.r-card{
+  background:var(--bg1);
+  padding:1rem .9rem;
+  display:flex;flex-direction:column;gap:.3rem;
+  transition:background .2s;
+  cursor:default;
+}
+.r-card:hover{background:var(--bg)}
+.r-num{
+  font-family:var(--display);
+  font-size:2rem;
+  color:rgba(0,0,0,.1);
+  line-height:1;
+}
+.r-title{font-family:var(--cond);font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.r-desc{font-family:var(--mono);font-size:.6rem;color:var(--ink4);font-style:italic}
+
+/* ── ORG ── */
+.org-wrap{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:2rem}
+.org-level{display:flex;justify-content:center;gap:2rem;position:relative;width:100%}
+.org-node{
+  background:var(--bg1);
+  border:1.5px solid var(--bg3);
+  padding:1.2rem 2rem;
+  text-align:center;
+  width:200px;
+  position:relative;
+  z-index:2;
+  transition:border-color .2s,background .2s;
+}
+.org-node:hover{border-color:var(--gold);background:var(--bg)}
+.org-rank{font-family:var(--cond);font-size:.9rem;font-weight:700;color:var(--gold);display:block;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem}
+.org-name{font-family:var(--display);font-size:1.15rem;color:var(--ink);letter-spacing:.06em}
+.org-v{width:1px;height:36px;background:var(--bg3)}
+.org-h{
+  position:absolute;
+  top:-36px;left:50%;
+  width:calc(100% - 200px);
+  height:1px;
+  background:var(--bg3);
+  transform:translateX(-50%);
+}
+.org-v-branch{
+  position:absolute;
+  top:-36px;
+  width:1px;height:36px;
+  background:var(--bg3);
+}
+
+/* ── CLOSING ── */
+.sig{
+  font-family:var(--serif);
+  font-size:2.5rem;
+  font-style:italic;
+  color:var(--ink);
+  margin-top:1.5rem;
+  padding-top:1.5rem;
+  border-top:2px solid var(--ink);
+  display:inline-block;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);
+  border-top:3px solid var(--gold);
+  padding:1.5rem 4rem;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--cond);
+  font-size:.58rem;
+  font-weight:600;
+  letter-spacing:.25em;
+  color:rgba(255,255,255,.25);
+  text-transform:uppercase;
+}
+footer span:nth-child(2){color:var(--gold)}
+
+/* ── SCROLL ANIMATION ── */
+.fade{opacity:0;transform:translateY(28px);transition:none}
+.fade.in{opacity:1;transform:translateY(0);transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1)}
+
+/* ── PULL QUOTE ── */
+.pull-quote{
+  border-top:3px double var(--ink);
+  border-bottom:3px double var(--ink);
+  padding:1.5rem 2rem;
+  margin:2rem 0;
+  font-family:var(--serif);
+  font-size:1.4rem;
+  font-style:italic;
+  color:var(--ink);
+  text-align:center;
+  position:relative;
+}
+.pull-quote::before{
+  content:'"';
+  font-size:5rem;
+  color:var(--gold);
+  position:absolute;
+  top:-1rem;
+  left:1rem;
+  line-height:1;
+  font-family:var(--serif);
+}
+
+/* ── COLUMNS ── */
+.two-col{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3rem;
+  border-top:1px solid var(--bg3);
+  padding-top:2rem;
+}
+.col-rule{
+  width:1px;
+  background:var(--bg3);
+  margin:0 -1.5rem;
+}
+
+/* ── MOBILE RESPONSIVENESS (SMARTPHONES & TABLETS) ── */
+@media (max-width: 900px) {
+  /* Hero-Bereich (Titel & Bild) untereinander statt nebeneinander */
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 120px;
+  }
+  .hero-left {
+    padding: 2rem 1.5rem;
+    border-right: none;
+  }
+  .hero-right {
+    padding: 2rem 1.5rem;
+  }
+  /* Statistik-Leiste auf 2x2 Grid anpassen */
+  .stat-bar {
+    grid-template-columns: 1fr 1fr;
+    border-bottom: none;
+  }
+  .stat-item {
+    border-bottom: 1px solid var(--bg3);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Generelle Abstände verkleinern */
+  .page {
+    padding: 3rem 1.5rem;
+  }
+  
+  /* Navigation anpassen: Links umbrechen lassen */
+  .nav-top {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-links a {
+    height: 40px;
+    border-left: none;
+    padding: 0 0.8rem;
+  }
+  
+  /* Grids auflösen (Dossier & Profil) */
+  .dossier-grid, 
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .dossier-grid { gap: 1px; } /* Rahmen behalten */
+
+  /* Werdegang (Lebenslauf) untereinander stapeln */
+  .wg-entry {
+    grid-template-columns: 1fr;
+  }
+  .wg-left {
+    padding: 1rem 1.5rem 0.5rem 1.5rem;
+    border-right: none;
+  }
+  .wg-right {
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+  }
+
+  /* Struktur / Organigramm reparieren */
+  .org-level {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  /* Blendet die hardgecodeten horizontalen Linien auf dem Handy aus */
+  .org-level > div[style*="absolute"] {
+    display: none !important;
+  }
+  
+  /* Das versetzte Grid für Ränge in eine einfache Liste umwandeln */
+  .staggered-wrapper {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .staggered-spine {
+    display: none; /* Mittellinie ausblenden */
+  }
+  .staggered-col.right {
+    margin-top: 0; /* Versatz aufheben */
+  }
+  .staggered-col.left .org-node::after,
+  .staggered-col.right .org-node::after {
+    display: none; /* Seitliche Striche ausblenden */
+  }
+  .org-node {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* Footer zentrieren und stapeln */
+  footer {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="ticker-wrap">
+  <div class="ticker-label">
+    <span class="ticker-dot"></span>
+    BREAKING
+  </div>
+  <div class="ticker-track">
+    <span class="ticker-item"><strong>EXKLUSIV:</strong> Neuer Chefredakteur für Weazel News gesucht - Bewerbungsverfahren eröffnet</span>
+    <span class="ticker-item"><strong>LIVE:</strong> Presskonferenz zur Restrukturierung der Redaktion geplant</span>
+    <span class="ticker-item"><strong>UPDATE:</strong> Weazel News stärkt Präsenz in Los Santos</span>
+    <span class="ticker-item"><strong>EXKLUSIV:</strong> Neue Chefredaktion verspricht unabhängige Berichterstattung und maximale Reichweite</span>
+    <span class="ticker-item"><strong>BREAKING:</strong> Bewerbung von Patrick Hawk eingegangen - vollständige Unterlagen liegen vor</span>
+    <span class="ticker-item"><strong>EXKLUSIV:</strong> Neuer Chefredakteur für Weazel News gesucht - Bewerbungsverfahren eröffnet</span>
+    <span class="ticker-item"><strong>LIVE:</strong> Presskonferenz zur Restrukturierung der Redaktion geplant</span>
+    <span class="ticker-item"><strong>UPDATE:</strong> Weazel News stärkt Präsenz in Los Santos</span>
+    <span class="ticker-item"><strong>EXKLUSIV:</strong> Neue Chefredaktion verspricht unabhängige Berichterstattung und maximale Reichweite</span>
+    <span class="ticker-item"><strong>BREAKING:</strong> Bewerbung von Patrick Hawk eingegangen - vollständige Unterlagen liegen vor</span>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-top">
+    <div class="nav-brand">
+      WEAZEL NEWS
+      <span class="nav-sub">Los Santos · On Air</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#infos">/ Infos</a></li>
+      <li><a href="#lore">/ Redaktion</a></li>
+      <li><a href="#werdegang">/ Werdegang</a></li>
+      <li><a href="#profil">/ Profil</a></li>
+      <li><a href="#vision">/ Vision</a></li>
+      <li><a href="#hierarchie">/ Struktur</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-left">
+    <div class="hero-bg-text">WN</div>
+
+    <div class="tag-row fade">
+      <div class="tag">WN-CHEF-LEAD</div>
+      <div class="tag-line"></div>
+      <div class="tag red">ON AIR</div>
+    </div>
+
+    <p class="hero-overline fade">Bewerbung als Chefredakteur</p>
+    <div class="hero-edition fade">Ausgabe Nr. 001 · Vertraulich</div>
+    <h1 class="hero-title fade">WEAZEL<br><span class="accent">NEWS</span></h1>
+    <p class="hero-deck fade">Die Stimme von Los Santos - für Wahrheit, Reichweite und die Geschichte hinter der Schlagzeile.</p>
+
+    <div class="hero-byline fade">
+      <div class="hero-name">Patrick Hawk</div>
+      <div class="hero-name-rule"></div>
+    </div>
+    <div class="hero-role fade">Chefredakteur Bewerbung · ID: 44756</div>
+
+    <div class="stat-bar fade">
+      <div class="stat-item">
+        <span class="stat-lbl">Status</span>
+        <span class="stat-val">Aktiv</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-lbl">Fraktion</span>
+        <span class="stat-val">Weazel News</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-lbl">Aktivität / Tag</span>
+        <span class="stat-val">4–7 Std</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-lbl">Aktuelle Fraktion</span>
+        <span class="stat-val">SANG</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="id-card fade">
+      <div class="id-card-header">
+        <span>PRESSE-AUSWEIS</span>
+        <span>#44756</span>
+      </div>
+      
+      <div class="id-photo">
+        <img src="profile.jpg" alt="Patrick Hawk Pressefoto">
+      </div>
+
+      <div class="id-footer">
+        <div>
+          <span class="id-footer-lbl">Name</span>
+          <span class="id-footer-val">Patrick Hawk</span>
+        </div>
+        <div>
+          <span class="id-footer-lbl">Rang</span>
+          <span class="id-footer-val">Chefredakteur</span>
+        </div>
+        <div>
+          <span class="id-footer-lbl">Fraktion</span>
+          <span class="id-footer-val">Weazel News</span>
+        </div>
+        <div>
+          <span class="id-footer-lbl">OOC Alter</span>
+          <span class="id-footer-val">17</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="press-badge fade">
+      <div class="press-icon">📰</div>
+      <div>
+        <span class="press-text-main">PRESSE PASS</span>
+        <span class="press-text-sub">Authorized Media Personnel</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+
+  <section id="infos" class="section">
+    <div class="sec-hd fade">
+      <div class="sec-num">01</div>
+      <div class="sec-info">
+        <div class="sec-pre">Identifikation</div>
+        <h2 class="sec-title">Infos über mich</h2>
+      </div>
+    </div>
+    <div class="dossier-grid fade">
+      <div class="d-field"><span class="d-lbl">IC Name</span><span class="d-val">Patrick Hawk</span></div>
+      <div class="d-field"><span class="d-lbl">Static ID</span><span class="d-val">44756</span></div>
+      <div class="d-field"><span class="d-lbl">OOC Alter</span><span class="d-val">17</span></div>
+      <div class="d-field"><span class="d-lbl">OOC Name</span><span class="d-val">Patrick</span></div>
+      <div class="d-field"><span class="d-lbl">Discord</span><span class="d-val">notpatrickkk</span></div>
+      <div class="d-field"><span class="d-lbl">Derzeitige Fraktion</span><span class="d-val">SANG</span></div>
+    </div>
+  </section>
+
+  <section id="lore" class="section">
+    <div class="sec-hd fade">
+      <div class="sec-num">02</div>
+      <div class="sec-info">
+        <div class="sec-pre">Geschichte</div>
+        <h2 class="sec-title">Die Lore von Weazel News</h2>
+      </div>
+    </div>
+    <div class="txt fade">
+      <p>Weazel News ist weit mehr als ein einfacher TV-Sender - wir sind das <strong>Herzstück der öffentlichen Meinungsbildung in Los Santos.</strong> Seit Jahrzehnten berichten wir live aus den gefährlichsten Vierteln der Stadt, stellen unbequeme Fragen an Behörden und Kriminelle gleichermaßen und geben den Bürgern eine Stimme.</p>
+
+      <div class="pull-quote">
+        Die Wahrheit wartet nicht auf den perfekten Moment - sie wird gedruckt, gesendet und gehört.
+      </div>
+
+      <p>In einer Stadt wie Los Santos, wo Macht, Korruption und das organisierte Verbrechen Hand in Hand gehen, braucht es Journalisten mit <strong>Rückgrat, Reaktionsschnelle und einem unbestechlichen Blick</strong> auf die Realität. Unter meiner Leitung wird Weazel News genau das verkörpern: kompromisslose Berichterstattung, maximale Reichweite und eine Redaktion, die jederzeit einsatzbereit ist.</p>
+    </div>
+  </section>
+
+  <section id="werdegang" class="section">
+    <div class="sec-hd fade">
+      <div class="sec-num">03</div>
+      <div class="sec-info">
+        <div class="sec-pre">Lebenslauf & Akte</div>
+        <h2 class="sec-title">Erfahrung und Werdegang</h2>
+      </div>
+    </div>
+
+    <div class="fade">
+      <div class="wg-entry">
+        <div class="wg-left">
+          <span class="wg-badge" style="background:rgba(139,92,246,.1);color:#a855f7;border:1px solid rgba(139,92,246,.4)">BALLAS</span>
+          <span class="wg-type">Crime</span>
+        </div>
+        <div class="wg-right">
+          <div class="wg-role">Eventleitung</div>
+          <div class="wg-under">Leader: Mike Hawk</div>
+        </div>
+      </div>
+
+      <div class="wg-entry">
+        <div class="wg-left">
+          <span class="wg-badge" style="background:rgba(234,179,8,.1);color:#eab308;border:1px solid rgba(234,179,8,.4)">LSV</span>
+          <span class="wg-type">Crime</span>
+        </div>
+        <div class="wg-right">
+          <div class="wg-role">Vize</div>
+          <div class="wg-under">Leader: Gustav Eiermann</div>
+        </div>
+      </div>
+
+      <div class="wg-entry">
+        <div class="wg-left">
+          <span class="wg-badge" style="background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.4)">BLOODS</span>
+          <span class="wg-type">Crime</span>
+        </div>
+        <div class="wg-right">
+          <div class="wg-role">Ausbildungsleitung</div>
+          <div class="wg-under">Leader: Pardik Klose</div>
+        </div>
+      </div>
+
+      <div class="wg-entry">
+        <div class="wg-left">
+          <span class="wg-badge" style="background:rgba(34,197,94,.1);color:#22c55e;border:1px solid rgba(34,197,94,.4)">FAMILIES</span>
+          <span class="wg-type">Crime</span>
+        </div>
+        <div class="wg-right">
+          <div class="wg-role">Planungsebene</div>
+          <div class="wg-under">Leader: Alex Strange</div>
+        </div>
+      </div>
+
+      <div class="wg-entry">
+        <div class="wg-left">
+          <span class="wg-badge" style="background:rgba(148,163,184,.1);color:#94a3b8;border:1px solid rgba(148,163,184,.3)">SHERIFF</span>
+          <span class="wg-type">Behörde</span>
+        </div>
+        <div class="wg-right">
+          <div class="wg-role">Assistant Sheriff</div>
+          <div class="wg-under">Leader: Gustav Eiermann</div>
+        </div>
+      </div>
+
+      <div class="wg-entry">
+        <div class="wg-left">
+          <span class="wg-badge" style="background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.4)">S.A.N.G.</span>
+          <span class="wg-type">Behörde</span>
+        </div>
+        <div class="wg-right">
+          <div class="wg-role">Abteilungsleitung MDC</div>
+          <div class="wg-under">Leader: Ben Bloom</div>
+        </div>
+      </div>
+
+      <div class="wg-entry">
+        <div class="wg-left">
+          <span class="wg-badge" style="background:rgba(148,163,184,.1);color:#94a3b8;border:1px solid rgba(148,163,184,.3)">GOV</span>
+          <span class="wg-type">Behörde</span>
+        </div>
+        <div class="wg-right">
+          <div class="wg-role">Stellv. Verteidigungsminister</div>
+          <div class="wg-under">Leader: Zarah Khalifa</div>
+        </div>
+      </div>
+
+      <div class="wg-entry">
+        <div class="wg-left">
+          <span class="wg-badge" style="background:rgba(99,179,237,.1);color:#63b3ed;border:1px solid rgba(99,179,237,.3)">F.I.B.</span>
+          <span class="wg-type">Behörde</span>
+        </div>
+        <div class="wg-right">
+          <div class="wg-role">HR-Leitung</div>
+          <div class="wg-under">Leader: Jeff E. Hoover</div>
+        </div>
+      </div>
+
+      <div class="wg-entry">
+        <div class="wg-left">
+          <span class="wg-badge" style="background:rgba(223,4,150,.1);color:#d8095f;border:1px solid rgba(129,4,98,.3)">ADMIN TEAM</span>
+          <span class="wg-type">Oberste Macht</span>
+        </div>
+        <div class="wg-right">
+          <div class="wg-role">Crime, MCL & Forum Admin</div>
+          <div class="wg-under">ca. 3 Wochen</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="profil" class="section">
+    <div class="sec-hd fade">
+      <div class="sec-num">04</div>
+      <div class="sec-info">
+        <div class="sec-pre">Profil</div>
+        <h2 class="sec-title">Stärken & Arbeitsweise</h2>
+      </div>
+    </div>
+    <div class="txt fade">
+      <div class="two-col">
+        <div>
+          <p>Ich kenne den Medien-RP von beiden Seiten: als Journalist auf der Straße und als Kommunikationsverantwortlicher in Behörden. Diese Doppelperspektive macht mich zu einem Chefredakteur, der <strong>versteht wie Nachrichten entstehen - und wie sie geformt werden.</strong></p>
+          <p>In Live-Situationen agiere ich bedacht: erst beobachten, dann berichten. Sensationsjournalismus lehne ich ab. <strong>Qualität, Kontext und Geschwindigkeit</strong> müssen in Balance sein.</p>
+        </div>
+        <div>
+          <p>Meine Stärke liegt in der <strong>Organisation der Redaktion</strong>: klare Ressorts, definierte Verantwortlichkeiten, strukturierte Schichten. Jeder Reporter weiß, was er zu tun hat, bevor die Story bricht.</p>
+          <p>Ich übernehme Verantwortung für meine Entscheidungen und lege höchsten Wert darauf, ein <strong>faires, respektvolles Redaktionsklima</strong> zu schaffen, in dem kreatives RP gedeihen kann.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="vision" class="section">
+    <div class="sec-hd fade">
+      <div class="sec-num">05</div>
+      <div class="sec-info">
+        <div class="sec-pre">Zukunft</div>
+        <h2 class="sec-title">Vision für Weazel News</h2>
+      </div>
+    </div>
+    <div class="txt fade">
+      <p><strong>// 01 - Live-Berichterstattung bei jedem Großereignis:</strong><br>
+      Kein Banküberfall, kein Schusswechsel, kein Act of Terror ohne Weazel News vor Ort. Wir etablieren feste Bereitschafts-Reporter für alle Tageszeiten, die innerhalb von Minuten auf Ereignisse reagieren können.</p>
+      <p><strong>// 02 - Redaktionelle Neutralität als Markenzeichen:</strong><br>
+      Weazel News berichtet über Kriminelle <em>und</em> Behörden gleichermaßen kritisch und fair. Wir sind keine Propaganda-Maschine - wir sind die vierte Gewalt. Dieses Prinzip ist nicht verhandelbar.</p>
+      <p><strong>// 03 - Strikte Aufnahmekriterien für die Redaktion:</strong></p>
+      <ul>
+        <li>Visumstufe 2</li>
+        <li>Nachweisbare Erfahrung im RP</li>
+        <li>Schreib- und Kommunikationsfähigkeit auf hohem Niveau</li>
+        <li>Hohe Aktivität, besonders zur Prime-Time</li>
+        <li>Mikrofon Pflicht für saubere Reportagen und Interviews</li>
+      </ul>
+      <p><strong>// 04 - Cross-Media-Präsenz:</strong><br>
+      Artikel, Interviews, Live-Streams, Reportagen - Weazel News ist überall präsent. Ich will eine <strong>vollständige Medienmarke</strong> aufbauen, keine One-Man-Show.</p>
+    </div>
+  </section>
+
+<div class="org-wrap fade">
+
+  <section id="hierarchie" class="section">
+  <div class="org-level">
+    <div class="org-node" style="border-color:var(--gold);background:rgba(200,150,10,.06)">
+      <span class="org-rank">Rang 14 - Director of Press</span>
+      <span class="org-name">Patrick Hawk</span>
+    </div>
+  </div>
+  <div class="org-v"></div>
+
+  <div class="org-level" style="position:relative;gap:1.5rem">
+    <div style="position:absolute;top:-36px;left:50%;transform:translateX(-50%);width:calc(100% - 260px);height:1px;background:var(--bg3)"></div>
+    <div style="position:absolute;top:-36px;left:calc(50% - 220px);width:1px;height:36px;background:var(--bg3)"></div>
+    <div style="position:absolute;top:-36px;left:50%;transform:translateX(-50%);width:1px;height:36px;background:var(--bg3)"></div>
+    <div style="position:absolute;top:-36px;right:calc(50% - 220px);width:1px;height:36px;background:var(--bg3)"></div>
+    <div class="org-node">
+      <span class="org-rank">Rang 13 - Deputy Director</span>
+      <span class="org-name">TBA</span>
+    </div>
+    <div class="org-node">
+      <span class="org-rank">Rang 13 - Deputy Director</span>
+      <span class="org-name">TBA</span>
+    </div>
+    <div class="org-node">
+      <span class="org-rank">Rang 13 - Deputy Director</span>
+      <span class="org-name">TBA</span>
+    </div>
+  </div>
+  <div class="org-v"></div>
+
+<div style="display:grid;grid-template-columns:1fr 40px 1fr;max-width:600px;margin:0 auto;width:100%">
+
+<div class="staggered-wrapper">
+  <div class="staggered-spine"></div>
+
+  <div class="staggered-col left">
+    <div class="org-node">
+      <span class="org-rank">Rang 12 - Head of Department</span>
+      <span class="org-name" style="font-size:.9rem;color:var(--ink4)">Leitung einer Abteilung</span>
+    </div>
+    <div class="org-node">
+      <span class="org-rank">Rang 10 - Senior Reporter</span>
+      <span class="org-name" style="font-size:.9rem;color:var(--ink4)">Hochrangiger Reporter</span>
+    </div>
+    <div class="org-node">
+      <span class="org-rank">Rang 08 - Reporter</span>
+      <span class="org-name" style="font-size:.9rem;color:var(--ink4)">Normaler Reporter</span>
+    </div>
+    <div class="org-node">
+      <span class="org-rank">Rang 06 - Junior Reporter</span>
+      <span class="org-name" style="font-size:.9rem;color:var(--ink4)">Neuling als Reporter</span>
+    </div>
+    <div class="org-node">
+      <span class="org-rank">Rang 04 - Redakteur</span>
+      <span class="org-name" style="font-size:.9rem;color:var(--ink4)">Normaler Redakteur</span>
+    </div>
+    <div class="org-node">
+      <span class="org-rank">Rang 02 - Praktikant</span>
+      <span class="org-name" style="font-size:.9rem;color:var(--ink4)">Neuling bei den Nachrichten</span>
+    </div>
+  </div>
+
+  <div class="staggered-col right">
+    <div class="org-node">
+      <span class="org-rank">Rang 11 - Dep. Head of Department</span>
+      <span class="org-name" style="font-size:.9rem;color:var(--ink4)">Stellv. Leitung einer Abteilung</span>
+    </div>
+    <div class="org-node">
+      <span class="org-rank">Rang 09 - Correspondent</span>
+      <span class="org-name" style="font-size:.9rem;color:var(--ink4)">Reporter für andere Orte</span>
+    </div>
+    <div class="org-node">
+      <span class="org-rank">Rang 07 - Media Reporter</span>
+      <span class="org-name" style="font-size:.9rem;color:var(--ink4)">Reporter mit Media Status</span>
+    </div>
+    <div class="org-node">
+      <span class="org-rank">Rang 05 - Camera Operator</span>
+      <span class="org-name" style="font-size:.9rem;color:var(--ink4)">Kameramann</span>
+    </div>
+    <div class="org-node">
+      <span class="org-rank">Rang 03 - Junior Redakteur</span>
+      <span class="org-name" style="font-size:.9rem;color:var(--ink4)">Neuling als Redakteur</span>
+    </div>
+    <div class="org-node" style="border-color:rgba(185,28,28,.4);background:rgba(185,28,28,.04)">
+      <span class="org-rank" style="color:var(--red)">Rang 01 - Suspendiert</span>
+      <span class="org-name" style="font-size:.9rem;color:var(--ink4)">Straf-Rang / Beurlaubt</span>
+    </div>
+  </div>
+</div>
+
+
+</section>
+
+  </div>
+</div>
+
+  <section class="section fade">
+    <div class="sec-hd">
+      <div class="sec-num">07</div>
+      <div class="sec-info">
+        <div class="sec-pre">Einsatz</div>
+        <h2 class="sec-title">Berichterstattung bei Großlagen</h2>
+      </div>
+    </div>
+    <div class="txt">
+      <p>Bei Geiselnahmen, Banküberfällen oder staatlichen Krisen ist Weazel News nicht nur Zuschauer - wir sind <strong>aktiver Teil der Erzählung.</strong> Chefredaktion und Korrespondenten koordinieren sich per Funk, um eine lückenlose Live-Berichterstattung zu gewährleisten.</p>
+      <p>Jeder Reporter kennt seine Aufgabe: Der Ankermann hält das Studio am Laufen, der Korrespondent ist vor Ort, der Kameramann dokumentiert. Chaos in der Berichterstattung schadet dem Ruf - <strong>wir liefern strukturierten, verifizierten Journalismus, auch unter Druck.</strong></p>
+    </div>
+  </section>
+
+  <section class="section fade">
+    <div class="sec-hd">
+      <div class="sec-num">08</div>
+      <div class="sec-info">
+        <div class="sec-pre">Diplomatie</div>
+        <h2 class="sec-title">Kooperation mit Fraktionen</h2>
+      </div>
+    </div>
+    <div class="txt">
+      <p>Weazel News arbeitet mit allen Fraktionen - Behörden wie Kriminellen - auf Basis von <strong>gegenseitigem Respekt und redaktioneller Unabhängigkeit.</strong> Exklusive Interviews, Statements und Hintergrundgespräche sind das Herzstück unserer Vernetzung.</p>
+      <p>Ich strebe feste Kooperationsvereinbarungen mit dem LSPD, dem Sheriff und mindestens einer etablierten Crime-Fraktion an. Das Ziel: Weazel News ist die erste Anlaufstelle, wenn jemand gehört werden will - auf beiden Seiten des Gesetzes.</p>
+    </div>
+  </section>
+
+  <section class="section fade">
+    <div class="sec-hd">
+      <div class="sec-num">09</div>
+      <div class="sec-info">
+        <div class="sec-pre">Ende</div>
+        <h2 class="sec-title">Schlusswort</h2>
+      </div>
+    </div>
+    <div class="txt">
+      <p>Ich bedanke mich herzlich für die Zeit, die Sie sich genommen haben, um meine Bewerbung und meine Vision für Weazel News zu lesen. Mit meiner Erfahrung als Journalist, Behördensprecher und Admin bringe ich genau das mit, was eine moderne Medienredaktion im Roleplay braucht: <strong>Struktur, Kreativität und den Willen zur Exzellenz.</strong></p>
+      <p>Ich würde mich sehr über die Gelegenheit freuen, Sie in einem persönlichen Gespräch von meinen Plänen für die Zukunft von Weazel News zu überzeugen.</p>
+      <br>
+      <p style="font-family:var(--mono);font-size:.8rem;color:var(--ink4);letter-spacing:.1em">Mit freundlichen Grüßen,</p>
+      <div class="sig">Patrick Hawk</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>Weazel News - Chefredakteur Bewerbung</span>
+  <span>Patrick Hawk · ID 44756</span>
+  <span>The Truth Prints Itself</span>
+</footer>
+
+<script>
+(function(){
+  let ctx = null;
+  function ac(){
+    if(!ctx) ctx = new (window.AudioContext||window.webkitAudioContext)();
+    if(ctx.state==='suspended') ctx.resume();
+    return ctx;
+  }
+  function pling(){
+    const c=ac(), o=c.createOscillator(), g=c.createGain();
+    o.connect(g); g.connect(c.destination);
+    o.type='sine';
+    o.frequency.setValueAtTime(900,c.currentTime);
+    o.frequency.exponentialRampToValueAtTime(1400,c.currentTime+0.05);
+    o.frequency.exponentialRampToValueAtTime(700,c.currentTime+0.15);
+    g.gain.setValueAtTime(0,c.currentTime);
+    g.gain.linearRampToValueAtTime(0.035,c.currentTime+0.005);
+    g.gain.exponentialRampToValueAtTime(0.0001,c.currentTime+0.2);
+    o.start(c.currentTime); o.stop(c.currentTime+0.22);
+  }
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      pling();
+      const t=document.querySelector(this.getAttribute('href'));
+      if(t) t.scrollIntoView({behavior:'smooth'});
+    });
+  });
+  document.addEventListener('pointerdown',function(){ac()},{once:true});
+})();
+
+(function(){
+  const els = document.querySelectorAll('.fade');
+  const io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
